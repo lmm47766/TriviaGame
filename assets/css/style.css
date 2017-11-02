@@ -1,0 +1,36 @@
+.container{
+	background: lightgray;
+	height: 450px;
+	text-align: center;
+}
+
+
+
+.button{
+ 	margin: 0 auto;
+}
+
+.rowq, .rowt {
+	height: 50px;
+}
+
+.rowc {
+	padding: 15px;
+}
+
+.timer {
+/*    width: 100%;*/
+    padding: 10px;
+    font-size: 25px;
+}
+
+.btn{
+	margin: 10px;
+	width: 50%;
+}
+
+.img{
+	display: none;
+	height: 200px;
+	width: 200px;
+}
