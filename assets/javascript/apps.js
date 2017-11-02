@@ -4,6 +4,7 @@ var timer=10;
 var flag = true;
 var intervalId;
 var y;
+var r;
 var qNum=0;
 var test = [{ question:"What is 2+2 is :", choice1:"4", choice2:"5", choice3:"6", choice4:"7", correct: "4", src: "http://freetvhd.net/wp-content/uploads/2015/02/wivb.png" },
 			{ question:"Which of the following is not a prime number:", choice1:"Two", choice2:"Three", choice3:"Four", choice4:"Five", correct: "Four", src:"http://images5.fanpop.com/image/photos/26600000/8-and-3-random-26674205-347-346.jpg" },
@@ -36,6 +37,8 @@ function resetGame(){
 
 
 function finalScreen(){
+
+	$(".timer").html("<h2></h2>");
 	$(".question").html("<h3> The number of correct answers is "+ correct +"</h3>");
 	$(".question").append("<h3> The number of correct answers is "+ wrong +"</h3>");
 	$(".start1").css("display","inline");
@@ -45,21 +48,22 @@ function finalScreen(){
 	clearTimeout(intervalId);
 }
 
-// function run() {
-//   intervalId = setInterval(decrement, 1000);
+function run() {
+	
+  intervalId = setInterval(decrement, 1000);
 
-// }
+}
 
 
-// function decrement() {
+function decrement() {
 
-//   timer--;
-//   $(".timer").html("<p> Time remaining: " + timer + "</p>");
+  timer--;
+  $(".timer").html("<h2> Time remaining: " + timer + "</h2>");
 
-//   if (timer === 0) {
-//     clearInterval(intervalId);
-//   }
-// }
+  if (timer === 0) {
+    clearInterval(r);
+  }
+}
 
 
 function postClick(){
@@ -72,6 +76,10 @@ function postClick(){
 }
 
 function timesUp(){
+
+	clearInterval(r);
+	timer=10;	
+	$(".timer").html("<h2></h2>");
 	clearTimeout(y);
 	$(".img").attr("src",test[qNum].src);
 	wrong++;
@@ -79,18 +87,18 @@ function timesUp(){
 	$(".question").html("<h2>Times up. The correct answer was </h2>");
 	if (qNum===5) {
 		flag=false;
-		postClick();
 	}
-	else{
-		postClick()
-	}	
+	postClick()
+
 }
 
 
 function displayQuestion() {
+		$(".timer").html("<h2> Time remaining: " + timer + "</h2>");
 	 if (flag === true) {
+	 	run();
 		y = setTimeout(timesUp,10000);
-		
+
 		$(".ans").css("display","inline");
 		$(".img").css("display","none");
 		$(".question").html("<h2>" + test[qNum].question + "</h2>");
@@ -105,33 +113,32 @@ function displayQuestion() {
 			var pick = $(this).attr("value");
 
 			if ( pick === test[qNum].correct) {
+				timer=10;	
+				$(".timer").html("<h2></h2>");			
+				clearInterval(r);
 				$(".question").html("<h2>CORRECT!!!! </h2>");
 				$(".img").attr("src",test[qNum].src);
 				correct++;
 				qNum++;
 				if (qNum===5) {
 					flag=false;
-					postClick();
 				}
-				else{
-					postClick();
-				}
+				postClick();
 
 				
 			}
 			else{
+				timer=10;	
+				$(".timer").html("<h2></h2>");
+				clearInterval(r);		
 				$(".question").html("<h2>WRONG THE CORRECT ANSWER WAS </h2>");
 				$(".img").attr("src",test[qNum].src);
 				wrong++;
 				qNum++;
 				if (qNum===5) {
 					flag=false;
-					postClick();
 				}
-				else{
-					postClick();
-				}			
-			
+				postClick();			
 				
 			}
 
