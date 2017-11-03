@@ -1,16 +1,21 @@
 var correct=0;
 var wrong=0;
-var timer=10;
+var timer=20;
 var flag = true;
 var intervalId;
 var y;
 var r;
 var qNum=0;
-var test = [{ question:"What is 2+2 is :", choice1:"4", choice2:"5", choice3:"6", choice4:"7", correct: "4", src: "http://freetvhd.net/wp-content/uploads/2015/02/wivb.png" },
-			{ question:"Which of the following is not a prime number:", choice1:"Two", choice2:"Three", choice3:"Four", choice4:"Five", correct: "Four", src:"http://images5.fanpop.com/image/photos/26600000/8-and-3-random-26674205-347-346.jpg" },
-			{ question:"3+3", choice1:"q3answer1", choice2:"answer2", choice3:"answer3", choice4:"answer4", correct: "answer3",src: "https://erasmusorgasmusprague.files.wordpress.com/2010/12/600px-wiimotebutton2-svg.png" },
-			{ question:"question4", choice1:"q4answer1", choice2:"answer2", choice3:"answer3", choice4:"answer4", correct: "answer4", src: "http://www.rajankhanna.com/wp-content/uploads/2011/12/one-1.jpg" },
-			{ question:"question5", choice1:"q5answer1", choice2:"answer2", choice3:"answer3", choice4:"answer4", correct: "answer1", src: "https://pbs.twimg.com/profile_images/875707706618904578/czlhbBLn_400x400.jpg"}			
+var test = [{ question:"Which games is not a sport video game", choice1:"FIFA 17", choice2:"NBA 2K17", choice3:"Marvel vs Capcom", choice4:"NFL 17", correct: "Marvel vs Capcom", src: "assets/images/mvc.jpg" },
+			{ question:"Which game is about soccer:", choice1:"NBA 2K17", choice2:"FIFA 17", choice3:"Candy Crush", choice4:"NHL 17", correct: "FIFA 17", src:"assets/images/fifa.png" },
+			{ question:"Which game is a fighting game", choice1:"NBA 2K17", choice2:"Call of Duty", choice3:"Overwatch", choice4:"Mortal Kombat", correct: "Mortal Kombat",src: "assets/images/kombat.png" },
+			{ question:"Which game is owned by Activision", choice1:"Overwatch", choice2:"Mario Brothers", choice3:"Call of Duty", choice4:"Battlefield", correct: "Call of Duty", src: "assets/images/cod.jpg" },
+			{ question:"Which is a racing game", choice1:"Mario Kart", choice2:"Dragon Ball Z: Budokai", choice3:"Smash Brothers", choice4:"Lego: Star Wars", correct: "Mario Kart", src: "assets/images/mk.jpg"},	
+			{ question:"Which game is owned by Nintendo", choice1:"Super Smash Brothers", choice2:"Dragon Ball Z: Budokai", choice3:"Smash Brothers", choice4:"Lego: Star Wars", correct: "Super Smash Brothers", src: "assets/images/smash.jpg"},	
+			{ question:"Which game was created by King", choice1:"Call of Duty", choice2:"Mario Party", choice3:"Candy Crush", choice4:"Street Fighter", correct: "Candy Crush", src: "assets/images/candy.jpg"},	
+			{ question:"Which is a classic game", choice1:"Tekken", choice2:"Ms. Pacman", choice3:"Smash Brothers", choice4:"League of Legends", correct: "Ms. Pacman", src: "assets/images/pacman.jpeg"},	
+			{ question:"Which game involves running and jumping", choice1:"Super Mario", choice2:"Tetris", choice3:"Logo Quiz", choice4:"Lego: Star Wars", correct: "Super Mario", src: "assets/images/mario.jpg"},	
+			{ question:"Which game is involves putting blocks together", choice1:"Mario Kart", choice2:"Tetris", choice3:"Pokemon Go", choice4:"Sonic", correct: "Tetris", src: "assets/images/tetris.png"}		
 			];
 
 
@@ -24,23 +29,24 @@ function startGame(){
 }
 
 function resetGame(){
-	$(".question").html("<h3></h3>");
+	$(".question").html("<h4></h4>");
 	$(".ans").off("click");
 	$(".start1").css("display","none");
-	$(".start").css("display","inline");
+	// $(".start").css("display","inline");
 	correct=0;
 	wrong=0;
-	timer=10;
+	timer=20;
 	qNum=0;
 	flag=true;
+	displayQuestion();
 }
 
 
 function finalScreen(){
 
-	$(".timer").html("<h2></h2>");
-	$(".question").html("<h3> The number of correct answers is "+ correct +"</h3>");
-	$(".question").append("<h3> The number of correct answers is "+ wrong +"</h3>");
+	$(".timer").html("<h3></h3>");
+	$(".question").html("<h4> The number of correct answers is "+ correct +"</h4>");
+	$(".question").append("<h4> The number of correct answers is "+ wrong +"</h4>");
 	$(".start1").css("display","inline");
 	$(".ans").css("display","none");
 	$(".img").css("display","none");		
@@ -58,7 +64,7 @@ function run() {
 function decrement() {
 
   timer--;
-  $(".timer").html("<h2> Time remaining: " + timer + "</h2>");
+  $(".timer").html("<h3> Time remaining: " + timer + "</h3>");
 
   if (timer === 0) {
     clearInterval(r);
@@ -78,14 +84,14 @@ function postClick(){
 function timesUp(){
 
 	clearInterval(r);
-	timer=10;	
-	$(".timer").html("<h2></h2>");
+	timer=20;	
+	$(".timer").html("<h3></h3>");
 	clearTimeout(y);
 	$(".img").attr("src",test[qNum].src);
 	wrong++;
 	qNum++;
-	$(".question").html("<h2>Times up. The correct answer was </h2>");
-	if (qNum===5) {
+	$(".question").html("<h4>Times up. The correct answer was </h4>");
+	if (qNum===10) {
 		flag=false;
 	}
 	postClick()
@@ -94,14 +100,14 @@ function timesUp(){
 
 
 function displayQuestion() {
-		$(".timer").html("<h2> Time remaining: " + timer + "</h2>");
+		$(".timer").html("<h3> Time remaining: " + timer + "</h3>");
 	 if (flag === true) {
 	 	run();
-		y = setTimeout(timesUp,10000);
+		y = setTimeout(timesUp,20000);
 
 		$(".ans").css("display","inline");
 		$(".img").css("display","none");
-		$(".question").html("<h2>" + test[qNum].question + "</h2>");
+		$(".question").html("<h4>" + test[qNum].question + "</h4>");
 		$(".form").css("display","inline");
 		$("#btn1").attr("value", test[qNum].choice1);
 		$("#btn2").attr("value", test[qNum].choice2);
@@ -113,14 +119,14 @@ function displayQuestion() {
 			var pick = $(this).attr("value");
 
 			if ( pick === test[qNum].correct) {
-				timer=10;	
-				$(".timer").html("<h2></h2>");			
+				timer=20;	
+				$(".timer").html("<h3></h3>");			
 				clearInterval(r);
-				$(".question").html("<h2>CORRECT!!!! </h2>");
+				$(".question").html("<h4>CORRECT!!!! </h4>");
 				$(".img").attr("src",test[qNum].src);
 				correct++;
 				qNum++;
-				if (qNum===5) {
+				if (qNum===10) {
 					flag=false;
 				}
 				postClick();
@@ -128,14 +134,14 @@ function displayQuestion() {
 				
 			}
 			else{
-				timer=10;	
-				$(".timer").html("<h2></h2>");
+				timer=20;	
+				$(".timer").html("<h3></h3>");
 				clearInterval(r);		
-				$(".question").html("<h2>WRONG THE CORRECT ANSWER WAS </h2>");
+				$(".question").html("<h4>WRONG THE CORRECT ANSWER WAS </h4>");
 				$(".img").attr("src",test[qNum].src);
 				wrong++;
 				qNum++;
-				if (qNum===5) {
+				if (qNum===10) {
 					flag=false;
 				}
 				postClick();			

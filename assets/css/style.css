@@ -1,13 +1,25 @@
 .container{
 	background: lightgray;
-	height: 450px;
+	height: 500px;
 	text-align: center;
+	width: 78%;
+	margin-top: 85px;
+	border-radius: 20px;
+	border-color: black;
+	border: 10px groove #28f1fc;
 }
 
 
 
 .button{
  	margin: 0 auto;
+}
+
+body{
+	background-size: 100%;
+	width: 100%;
+	height: 100%;
+	font-family: 'Black Ops One', cursive;
 }
 
 .rowq, .rowt {
@@ -19,8 +31,6 @@
 }
 
 .timer {
-/*    width: 100%;*/
-    /*padding: 10px;*/
     font-size: 25px;
 }
 
@@ -28,8 +38,9 @@
 	margin: 5px 0px;
 	width: 100%;
 	height: 50px;
-	background: darkred;
-	border: 2px solid white;
+	background: #28f1fc;
+	border: 5px groove black;
+	color: black;
 }
 
 .img{
@@ -41,3 +52,19 @@
 .start1{
 	display: none;
 }
+
+.btn:hover{
+	background: black;
+}
+
+
+h1{
+	background: black;
+	color: #28f1fc;
+}
+
+
+
+
+
+
